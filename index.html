@@ -53,6 +53,7 @@
         .btn:hover {
             background: #2980b9;
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .section-title {
@@ -60,6 +61,7 @@
             margin-bottom: 40px;
             color: var(--primary);
             position: relative;
+            font-size: 2.2rem;
         }
         
         .section-title:after {
@@ -79,6 +81,12 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
         nav {
@@ -107,10 +115,22 @@
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
         
-        .nav-links a:hover {
-            color: var(--secondary);
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
         }
         
         /* Hero Section */
@@ -129,15 +149,22 @@
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .hero h1 {
-            font-size: 48px;
+            font-size: 3.2rem;
             margin-bottom: 20px;
+            line-height: 1.2;
         }
         
         .hero p {
-            font-size: 20px;
+            font-size: 1.25rem;
             margin-bottom: 30px;
         }
         
@@ -176,6 +203,11 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .about-img:hover {
+            transform: scale(1.03);
         }
         
         .about-img img {
@@ -189,13 +221,14 @@
         }
         
         .about-text h3 {
-            font-size: 28px;
+            font-size: 2rem;
             margin-bottom: 20px;
             color: var(--primary);
         }
         
         .about-text p {
             margin-bottom: 15px;
+            font-size: 1.1rem;
         }
         
         .skills {
@@ -210,6 +243,7 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 5px;
+            font-weight: 500;
         }
         
         .skill-bar {
@@ -223,6 +257,51 @@
             height: 100%;
             background: var(--secondary);
             border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .skill-category h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-category h4 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li:before {
+            content: '•';
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
         
         /* Projects Section */
@@ -242,11 +321,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            position: relative;
         }
         
         .project-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .project-img {
@@ -272,6 +353,7 @@
         .project-info h3 {
             margin-bottom: 10px;
             color: var(--primary);
+            font-size: 1.3rem;
         }
         
         .project-info p {
@@ -292,6 +374,12 @@
             border-radius: 20px;
             font-size: 12px;
             color: var(--dark);
+            transition: all 0.3s;
+        }
+        
+        .project-tag:hover {
+            background: var(--secondary);
+            color: white;
         }
         
         /* Education Section */
@@ -337,6 +425,11 @@
             background: #f9f9f9;
             border-radius: 5px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.02);
         }
         
         .timeline-date {
@@ -347,6 +440,7 @@
         .timeline-title {
             margin: 10px 0;
             color: var(--primary);
+            font-size: 1.2rem;
         }
         
         /* Contact Section */
@@ -367,6 +461,7 @@
         .contact-info h3 {
             margin-bottom: 20px;
             color: var(--primary);
+            font-size: 1.5rem;
         }
         
         .contact-details {
@@ -377,41 +472,24 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .contact-detail:hover {
+            transform: translateX(5px);
         }
         
         .contact-icon {
             margin-right: 15px;
             color: var(--secondary);
             font-size: 20px;
-        }
-        
-        .contact-form {
-            flex: 1;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
+            width: 40px;
+            height: 40px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         /* Footer */
@@ -440,7 +518,7 @@
         
         .social-link:hover {
             background: var(--secondary);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
         }
         
         /* Responsive */
@@ -466,13 +544,25 @@
             .contact-container {
                 flex-direction: column;
             }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <nav>
                 <div class="logo">Athirah Sofiya</div>
@@ -515,7 +605,7 @@
                     <p>Available for internship from <strong>September 1, 2025 to February 15, 2026</strong>, I'm excited to contribute my skills while growing professionally.</p>
                     
                     <div class="skills">
-                        <h4>My Skills</h4>
+                        <h4>My Core Skills</h4>
                         <div class="skill-item">
                             <div class="skill-name">
                                 <span>WordPress Development</span>
@@ -553,86 +643,191 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Enhanced Skills Grid -->
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
+                            <ul class="skill-list">
+                                <li>WordPress Development</li>
+                                <li>HTML/CSS</li>
+                                <li>MySQL/PHPMyAdmin</li>
+                                <li>PHP</li>
+                                <li>Content Management Systems</li>
+                                <li>Database Design</li>
+                                <li>SEO Optimization</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-bullhorn"></i> Digital Marketing</h4>
+                            <ul class="skill-list">
+                                <li>Social Media Management</li>
+                                <li>Content Strategy</li>
+                                <li>Copywriting</li>
+                                <li>Facebook Marketing</li>
+                                <li>Brand Development</li>
+                                <li>Canva Design</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-users"></i> Soft Skills</h4>
+                            <ul class="skill-list">
+                                <li>Leadership</li>
+                                <li>Team Collaboration</li>
+                                <li>Effective Communication</li>
+                                <li>Problem Solving</li>
+                                <li>Adaptability</li>
+                                <li>Project Management</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-globe"></i> Languages</h4>
+                            <ul class="skill-list">
+                                <li>English (Proficient)</li>
+                                <li>Malay (Fluent)</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/IPOH.png" alt="Ipoh Community Website">
-                    </div>
-                    <div class="project-info">
-                        <h3>Ipoh Community Website</h3>
-                        <p>A tourism-focused WordPress site with mobile-responsive design and SEO optimization.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">WordPress</span>
-                            <span class="project-tag">SEO</span>
-                            <span class="project-tag">Responsive Design</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=7NNRqPQ1IOg" class="btn">View Details</a>
-                    </div>
+<!-- Projects Section -->
+<section id="projects" class="projects">
+    <div class="container">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+            <!-- Existing Project 1 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/IPOH.png" alt="Ipoh Community Website">
                 </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/elderlycare.png" alt="Elderly Care Management System">
+                <div class="project-info">
+                    <h3>Ipoh Community Website</h3>
+                    <p>A tourism-focused WordPress site with mobile-responsive design and SEO optimization.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">WordPress</span>
+                        <span class="project-tag">SEO</span>
+                        <span class="project-tag">Responsive Design</span>
+                        <span class="project-tag">UI/UX</span>
                     </div>
-                    <div class="project-info">
-                        <h3>Elderly Care Management System</h3>
-                        <p>Designed MySQL database with secure access controls and ACID compliance.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">MySQL</span>
-                            <span class="project-tag">Database Design</span>
-                            <span class="project-tag">Security</span>
-                        </div>
-                        <a href="/REPORT PAIR ASSG_ELDERLY CARE MANAGEMENT SYSTEM.pdf" class="btn">View Details</a>
-                    </div>
+                    <a href="https://www.youtube.com/watch?v=7NNRqPQ1IOg" class="btn">View Details</a>
                 </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/kolejfoodjasmine.png" alt="Kolej Food Ordering System">
-                    </div>
-                    <div class="project-info">
-                        <h3>Kolej Food Ordering System</h3>
-                        <p>Implemented CRUD operations using PHP/MySQL for campus food service with user-friendly interface.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">PHP</span>
-                            <span class="project-tag">MySQL</span>
-                            <span class="project-tag">CRUD</span>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=2zL4-9EymSI" class="btn">View Details</a>
-                    </div>
+            </div>
+            
+            <!-- Existing Project 2 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/elderlycare.png" alt="Elderly Care Management System">
                 </div>
-                
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/kookiedips.jpg" alt="Kookie Dips Social Media">
+                <div class="project-info">
+                    <h3>Elderly Care Management System</h3>
+                    <p>Designed MySQL database with secure access controls and ACID compliance.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">MySQL</span>
+                        <span class="project-tag">Database Design</span>
+                        <span class="project-tag">Security</span>
+                        <span class="project-tag">System Architecture</span>
                     </div>
-                    <div class="project-info">
-                        <h3>Kookie Dips Social Media</h3>
-                        <p>Co-founded gourmet cookie-dipping sauce business, managing social media campaigns that drove 20+ sales in first month.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Social Media</span>
-                            <span class="project-tag">Digital Marketing</span>
-                            <span class="project-tag">Content Creation</span>
-                        </div>
-                        <a href="https://www.facebook.com/KookieDips?mibextid=ZbWKwL" class="btn">View Details</a>
+                    <a href="/REPORT PAIR ASSG_ELDERLY CARE MANAGEMENT SYSTEM.pdf" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <!-- New Project 5 - Subang Health Care -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/subanghealthcare.png" alt="Subang Health Care App">
+                </div>
+                <div class="project-info">
+                    <h3>Subang Health Care</h3>
+                    <p>Smart City health information platform for clinics in Subang Jaya/USJ with clinic listings, medical info, and contact forms.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">FlutterFlow</span>
+                        <span class="project-tag">Firebase</span>
+                        <span class="project-tag">Mobile UI/UX</span>
+                        <span class="project-tag">Healthcare Tech</span>
+                        <span class="project-tag">Individual Project</span>
                     </div>
+                    <div class="project-features">
+                        <p><strong>Key Features:</strong></p>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>Real-time updates without login</li>
+                            <li>User account system for premium features</li>
+                            <li>Clinic location mapping</li>
+                            <li>Health bulletin system</li>
+                        </ul>
+                    </div>
+                    <a href="https://subanghealthcare.flutterflow.app/" class="btn">View Apps</a>
+                </div>
+            </div>
+            
+            <!-- New Project 6 - UiTM Pulse -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/UiTM Pulse Logo.png" alt="UiTM Pulse App">
+                </div>
+                <div class="project-info">
+                    <h3>UiTM Pulse</h3>
+                    <p>Campus mobile app consolidating university events and wellness activities for UiTM Selangor students/staff.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">FlutterFlow</span>
+                        <span class="project-tag">Firebase</span>
+                        <span class="project-tag">Event Management</span>
+                        <span class="project-tag">Wellness Tracking</span>
+                        <span class="project-tag">Group Project</span>
+                    </div>
+                    <div class="project-features">
+                        <p><strong>Key Features:</strong></p>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>Event updates and RSVP system</li>
+                            <li>Attendance tracking via QR codes</li>
+                            <li>Wellness activity logging</li>
+                            <li>Modular design for easy expansion</li>
+                        </ul>
+                    </div>
+                    <a href="https://uitmpulse-icm661-group.flutterflow.app/" class="btn">View Apps</a>
+                </div>
+            </div>
+            
+            <!-- Existing Project 3 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/kolejfoodjasmine.png" alt="Kolej Food Ordering System">
+                </div>
+                <div class="project-info">
+                    <h3>Kolej Food Ordering System</h3>
+                    <p>Implemented CRUD operations using PHP/MySQL for campus food service with user-friendly interface.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">PHP</span>
+                        <span class="project-tag">MySQL</span>
+                        <span class="project-tag">CRUD</span>
+                        <span class="project-tag">Full-stack</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=2zL4-9EymSI" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <!-- Existing Project 4 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/kookiedips.jpg" alt="Kookie Dips Social Media">
+                </div>
+                <div class="project-info">
+                    <h3>Kookie Dips Social Media</h3>
+                    <p>Co-founded gourmet cookie-dipping sauce business, managing social media campaigns that drove 20+ sales in first month.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Social Media</span>
+                        <span class="project-tag">Digital Marketing</span>
+                        <span class="project-tag">Content Creation</span>
+                        <span class="project-tag">Entrepreneurship</span>
+                    </div>
+                    <a href="https://www.facebook.com/KookieDips?mibextid=ZbWKwL" class="btn">View Details</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Education Section -->
     <section id="education" class="education">
@@ -646,6 +841,8 @@
                         <h3 class="timeline-title">Bachelor of Information Science (Hons.) Content Information Management</h3>
                         <p>UiTM Puncak Perdana</p>
                         <p>Current CGPA: 3.12</p>
+                        <p><strong>Core Subjects:</strong> Web Design, Database Systems, Digital Content Publishing, Information Architecture, Web Archiving</p>
+                        <br><a href="/TRANSKRIP_MINI_ATHIRAH SOFIYA.pdf" class="btn">View Transcript</a>
                     </div>
                 </div>
                 
@@ -655,7 +852,7 @@
                         <div class="timeline-date">2023 - 2025</div>
                         <h3 class="timeline-title">Multimedia EXCO</h3>
                         <p>Information Management Students Association</p>
-                        <p>Led creative teams in developing and executing promotional campaigns.</p>
+                        <p>Led creative teams in developing and executing promotional campaigns. Oversaw content creation and strategic distribution to maximize event visibility and engagement.</p>
                     </div>
                 </div>
                 
@@ -665,8 +862,18 @@
                         <div class="timeline-date">2024</div>
                         <h3 class="timeline-title">Program Director</h3>
                         <p>"Dive into WordPress" Workshop</p>
-                        <p>Coordinated industry expert to deliver hands-on WordPress and MySQL training.</p>
-                        <br><a href="/certificatediveintowordpress.png" class="btn">View Details</a>
+                        <p>Coordinated industry expert to deliver hands-on WordPress and MySQL training. Handled all logistical aspects from curriculum planning to participant management.</p>
+                        <br><a href="/certificatediveintowordpress.png" class="btn">View Certificate</a>
+                    </div>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3 class="timeline-title">Digital Defenders Program</h3>
+                        <p>Ensuring Our Online World is Protected</p>
+                        <p>Participated in intensive training on cybersecurity principles and digital content protection strategies.</p>
                     </div>
                 </div>
             </div>
@@ -702,8 +909,23 @@
                     </div>
                     <h3>Availability</h3>
                     <p>Available for internship from <strong>September 1, 2025 to February 15, 2026</strong>.</p>
+                    
+                    <h3>Professional Profiles</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div><a href="https://www.linkedin.com/in/athirah-sofiya-388884282/" style="color: var(--dark);">LinkedIn Profile</a></div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div><a href="#" style="color: var(--dark);">GitHub (Coming Soon)</a></div>
+                        </div>
+                    </div>
                 </div>
-                
             </div>
         </div>
     </section>
@@ -716,9 +938,52 @@
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/athirah-sofiya-388884282/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://www.facebook.com/share/19PxCTrWas/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="mailto:athirahsofiya92@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
             </div>
             <p>&copy; 2025 Athirah Sofiya. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animate skill bars on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            function animateSkills() {
+                skillBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            }
+            
+            // Trigger animation when skills section is in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSkills();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const skillsSection = document.querySelector('.skills');
+            if (skillsSection) {
+                observer.observe(skillsSection);
+            }
+        });
+    </script>
 </body>
 </html>
